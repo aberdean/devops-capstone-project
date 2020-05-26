@@ -21,25 +21,23 @@ pipeline {
 	    
 	    stage('Lint Dockerfile') {
 	        steps {
-	            sh '''
-	                hadolint Dockerfile
-	            '''
+	            sh 'hadolint Dockerfile'
 	        }
 	    }
 	    
 	    stage('Build Docker image') {
 	        steps {
-	            sh '''
-	                docker build --tag=capstoneimage .
-	            '''
+	            sh 'docker build --tag=capstoneimage .'
 	        }
 	    }
 	    
 	    stage('Upload Docker image to Docker Hub') {
 	        steps {
 	            docker.withRegistry('', 'dockerhub') {
-	                docker tag capstoneimage aberdean/capstone
-	                docker push aberdean/capstone
+	                sh '''
+    	                docker tag capstoneimage aberdean/capstone
+    	                docker push aberdean/capstone
+    	            '''
 	            }
 	        }
 	    }
