@@ -4,6 +4,15 @@ pipeline {
     
     stages {
     
+        stage('Install tidy') {
+            steps {
+                sh '''
+                    sudo apt-get update &&\
+                    sudo apt-get install -y tidy
+                '''
+            }
+        }
+    
         stage('Lint HTML') {
 	        steps {
                 sh 'tidy -q -e *.html'
