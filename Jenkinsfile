@@ -1,5 +1,7 @@
 pipeline {
+
     agent any
+    
     stages {
     
         stage('Lint HTML') {
@@ -27,7 +29,9 @@ pipeline {
 	    
 	    stage('Build Docker image') {
 	        steps {
-	            docker build --tag=capstoneimage .
+	            sh '''
+	                docker build --tag=capstoneimage .
+	            '''
 	        }
 	    }
 	    
