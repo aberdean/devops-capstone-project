@@ -15,6 +15,7 @@ pipeline {
                             --nodes-min 2 \
                             --nodes-max 4 \
                             --managed
+                    '''
 	            }
 	        }
 	    }
