@@ -26,7 +26,9 @@ pipeline {
 	    stage('Delete cluster') {
 	       steps {
 	            withAWS(region:'us-west-2',credentials:'Capstone') {
-	                eksctl delete cluster --region=us-west-2 --name=capstone
+	                sh '''
+	                    eksctl delete cluster --region=us-west-2 --name=capstone
+	                '''
 	            }
 	        }
         }
