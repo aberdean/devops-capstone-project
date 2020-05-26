@@ -33,7 +33,7 @@ pipeline {
 	    
 	    stage('Upload Docker image to Docker Hub') {
 	        steps {
-	            docker.withRegistry('', 'dockerhub') {
+	            withRegistry('', 'dockerhub') {
 	                sh '''
     	                docker tag capstoneimage aberdean/capstone &&\
     	                docker push aberdean/capstone
