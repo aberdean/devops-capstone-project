@@ -35,7 +35,7 @@ pipeline {
 	        steps {
 	            docker.withRegistry('', 'dockerhub') {
 	                sh '''
-    	                docker tag capstoneimage aberdean/capstone
+    	                docker tag capstoneimage aberdean/capstone &&\
     	                docker push aberdean/capstone
     	            '''
 	            }
