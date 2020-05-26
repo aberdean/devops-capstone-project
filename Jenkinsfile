@@ -42,7 +42,7 @@ pipeline {
 	    
 	    stage('Upload Docker image to Docker Hub') {
 	        steps {
-	            withDockerRegistry('', 'dockerhub') {
+	            withDockerRegistry([url: '', credentialsId: 'dockerhub']) {
 	                sh '''
     	                docker tag capstoneimage aberdean/capstone &&\
     	                docker push aberdean/capstone
