@@ -1,7 +1,7 @@
 pipeline {
     agent any
     stages {
-        stage('Install kubectl') {
+	    stage('Install kubectl') {
             steps {
                 sh '''
                     curl -o kubectl https://amazon-eks.s3.us-west-2.amazonaws.com/1.16.8/2020-04-16/bin/linux/amd64/kubectl &&\
@@ -22,24 +22,13 @@ pipeline {
                 '''
             }
         }
-    
-	    stage('Create Kubernetes cluster') {
+        
+	    stage('Delete cluster') {
 	       steps {
 	            withAWS(region:'us-west-2',credentials:'Capstone') {
-	                sh '''
-	                    eksctl create cluster \
-                            --name capstone \
-                            --version 1.16 \
-                            --region us-west-2 \
-                            --nodegroup-name standard-workers \
-                            --node-type t2.micro \
-                            --nodes 2 \
-                            --nodes-min 2 \
-                            --nodes-max 4 \
-                            --managed
-                    '''
+	                eksctl delete cluster --region=us-west-2 --name=capstone
 	            }
 	        }
-	    }
+        }
     }
 }
