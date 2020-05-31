@@ -33,16 +33,6 @@ pipeline {
 	        }
 	    }
 	    
-	    stage('Bind to cluster') {
-			steps {
-				withAWS(region:'us-west-2', credentials:'Capstone') {
-					sh '''
-						kubectl config use-context arn:aws:eks:us-west-2:326144634472:cluster/capstone
-					'''
-				}
-			}
-		}
-	    
 	    stage('Deploy app') {
 	    	steps {
 	    		withAWS(region:'us-west-2',credentials:'Capstone') {
