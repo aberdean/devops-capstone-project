@@ -18,7 +18,7 @@ pipeline {
 	    
 	    stage('Build Docker image') {
 	        steps {
-	            sh 'sudo docker build --tag=capstoneimage .'
+	            sh 'docker build --tag=capstoneimage .'
 	        }
 	    }
 	    
@@ -26,8 +26,8 @@ pipeline {
 	        steps {
 	            withDockerRegistry([url: '', credentialsId: 'dockerhub']) {
 	                sh '''
-    	                sudo docker tag capstoneimage aberdean/capstone &&\
-    	                sudo docker push aberdean/capstone
+    	                docker tag capstoneimage aberdean/capstone &&\
+    	                docker push aberdean/capstone
     	            '''
 	            }
 	        }
