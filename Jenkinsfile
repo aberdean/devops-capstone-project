@@ -7,7 +7,7 @@ pipeline {
     	stage('Create cluster') {
     		when {
     			expression {
-    				STACK_COMPLETE = sh(returnStdout: true, script: 'aws cloudformation wait stack-create-complete --stack-name capstone')
+    				STACK_COMPLETE = sh(returnStdout: true, script: 'aws cloudformation wait stack-create-complete --region us-west-2 --stack-name capstone')
     				return STACK_COMPLETE == 'Waiter StackCreateComplete failed: Waiter encountered a terminal failure state'
     			}
     		}
@@ -19,7 +19,7 @@ pipeline {
     	stage('Skip cluster creation') {
     		when {
     			expression {
-    				STACK_COMPLETE = sh(returnStdout: true, script: 'aws cloudformation wait stack-create-complete --stack-name capstone')
+    				STACK_COMPLETE = sh(returnStdout: true, script: 'aws cloudformation wait stack-create-complete --region us-west-2 --stack-name capstone')
     				return !(STACK_COMPLETE == 'Waiter StackCreateComplete failed: Waiter encountered a terminal failure state')
     			}
     		}
