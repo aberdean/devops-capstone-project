@@ -13,7 +13,7 @@ pipeline {
     		}
     		steps {
     			build job: 'setup-cluster/Jenkinsfile', propagate: true, wait: true
-    		}c
+    		}
     	}
     	
     	stage('Skip cluster creation') {
