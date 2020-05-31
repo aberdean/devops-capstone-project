@@ -9,7 +9,7 @@ pipeline {
     			expression {
     				return withAWS(region:'us-west-2',credentials:'Capstone') {
     					sh(returnStdout: false, script: 'aws cloudformation wait stack-create-complete --stack-name capstone')
-    				} == 'Waiter StackCreateComplete failed: Waiter encountered a terminal failure state'
+    				} == 255
     			}
     		}
     		steps {
