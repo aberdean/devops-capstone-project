@@ -36,7 +36,7 @@ pipeline {
 	    stage('Deploy app') {
 	    	steps {
 	    		withAWS(region:'us-west-2',credentials:'Capstone') {
-	    			sh 'kubectl apply -f ./deployment.yaml'
+	    			sh 'kubectl apply -f deployment.yaml'
 	    		}
 	    	}
 	    }
