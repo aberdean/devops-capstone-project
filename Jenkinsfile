@@ -40,5 +40,13 @@ pipeline {
 	    		}
 	    	}
 	    }
+	    
+	    stage('Check deployment') {
+	    	steps {
+	    		withAWS(region:'us-west-2',credentials:'Capstone') {
+	    			sh 'kubectl get svc'
+	    		}
+	    	}
+	    }
     }
 }
