@@ -40,10 +40,10 @@ pipeline {
 	    	}
 	    }
 	    
-	    stage('Check pods') {
+	    stage('Check deployment') {
 	    	steps {
 	    		withAWS(region:'us-west-2',credentials:'Capstone') {
-	    			sh 'kubectl get pods'
+	    			sh 'kubectl rollout status deployment capstone'
 	    		}
 	    	}
 	    }
