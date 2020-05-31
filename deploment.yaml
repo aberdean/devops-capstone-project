@@ -5,7 +5,7 @@ metadata:
     labels:
         app: capstone
 spec:
-    replicas: 2
+    replicas: 4
     selector:
         matchLabels:
             app: capstone
@@ -21,5 +21,4 @@ spec:
               - containerPort: 80
     strategy:
         type: RollingUpdate
-        maxUnavailable: 50%
         
