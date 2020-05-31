@@ -41,10 +41,10 @@ pipeline {
 	    	}
 	    }
 	    
-	    stage('Check deployment') {
+	    stage('Check pods') {
 	    	steps {
 	    		withAWS(region:'us-west-2',credentials:'Capstone') {
-	    			sh 'kubectl get svc'
+	    			sh 'kubectl get pods'
 	    		}
 	    	}
 	    }
