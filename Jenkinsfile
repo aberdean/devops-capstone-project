@@ -51,7 +51,7 @@ pipeline {
 	    stage('Check final deployment') {
 	    	steps {
 	    		withAWS(region:'us-west-2',credentials:'Capstone') {
-	    			sh 'kubectl get deploment capstone-deployment'
+	    			sh 'kubectl get deployment capstone-deployment'
 	    		}
 	    	}
 	    }
