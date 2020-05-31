@@ -7,10 +7,9 @@ pipeline {
     	stage('Create cluster') {
     		when {
     			expression {
-    				STACK_COMPLETE = withAWS(region:'us-west-2',credentials:'Capstone') {
+    				return withAWS(region:'us-west-2',credentials:'Capstone') {
     					sh(returnStdout: false, script: 'aws cloudformation wait stack-create-complete --stack-name capstone')
-    				}
-    				return STACK_COMPLETE == 'Waiter StackCreateComplete failed: Waiter encountered a terminal failure state'
+    				} == 'Waiter StackCreateComplete failed: Waiter encountered a terminal failure state'
     			}
     		}
     		steps {
