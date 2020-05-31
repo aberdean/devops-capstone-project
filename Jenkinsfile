@@ -3,6 +3,12 @@ pipeline {
     agent any
     
     stages {
+    
+    	stage('find file') {
+    		steps {
+    			sh 'ls'
+    		}
+    	}
     	
     	stage('Create cluster') {
     		steps {
