@@ -21,4 +21,5 @@ spec:
               - containerPort: 80
     strategy:
         type: RollingUpdate
+            maxUnavailable: 50%
         
