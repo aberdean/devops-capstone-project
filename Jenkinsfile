@@ -26,8 +26,8 @@ pipeline {
 	        steps {
 	            withDockerRegistry([url: '', credentialsId: 'dockerhub']) {
 	                sh '''
-    	                docker tag capstoneimage aberdean/capstone &&\
-    	                docker push aberdean/capstone
+    	                sudo docker tag capstoneimage aberdean/capstone &&\
+    	                sudo docker push aberdean/capstone
     	            '''
 	            }
 	        }
