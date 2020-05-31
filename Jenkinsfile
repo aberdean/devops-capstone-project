@@ -7,7 +7,7 @@ pipeline {
     	stage('Create cluster') {
     		steps {
     			sh 'cd setup-cluster'
-    			build job: 'Jenkinsfile', propagate: true, wait: true
+    			build job: 'setup-cluster', propagate: true, wait: true
     			sh 'cd ..'
     		}
     	}
