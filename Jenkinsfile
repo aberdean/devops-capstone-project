@@ -6,7 +6,7 @@ pipeline {
     	
     	stage('Create cluster') {
     		steps {
-    			build job: 'devops-capstone-project/setup-cluster/Jenkinsfile', propagate: true, wait: true
+    			build job: '/setup-cluster/Jenkinsfile', propagate: true, wait: true
     		}
     	}
     	
