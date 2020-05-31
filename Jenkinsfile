@@ -18,7 +18,7 @@ pipeline {
 	    
 	    stage('Build Docker image') {
 	        steps {
-	            sh 'docker build -t aberdean/capstone:v1 .'
+	            sh 'docker build -t aberdean/capstone:v2 .'
 	        }
 	    }
 	    
@@ -26,7 +26,7 @@ pipeline {
 	        steps {
 	            withDockerRegistry([url: '', credentialsId: 'dockerhub']) {
 	                sh '''
-    	                docker push aberdean/capstone:v1
+    	                docker push aberdean/capstone:v2
     	            '''
 	            }
 	        }

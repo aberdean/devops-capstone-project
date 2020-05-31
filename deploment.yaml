@@ -16,7 +16,7 @@ spec:
         spec:
             containers:
             - name: capstone
-              image: aberdean/capstone:v1
+              image: aberdean/capstone:v2
               ports:
               - containerPort: 80
     strategy:
