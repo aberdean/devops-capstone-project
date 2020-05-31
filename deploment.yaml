@@ -16,9 +16,9 @@ spec:
         spec:
             containers:
             - name: capstone
-                image: aberdean/capstone
-                ports:
-                - containerPort: 80
+              image: aberdean/capstone
+              ports:
+              - containerPort: 80
     strategy:
         type: RollingUpdate
         
