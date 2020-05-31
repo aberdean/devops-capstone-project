@@ -7,9 +7,9 @@ pipeline {
     	stage('Create cluster') {
     		when {
     			expression {
-    				return withAWS(region:'us-west-2',credentials:'Capstone') {
+    				return !(withAWS(region:'us-west-2',credentials:'Capstone') {
     					sh(returnStdout: false, script: 'aws cloudformation wait stack-create-complete --stack-name capstone')
-    				} == 255
+    				})
     			}
     		}
     		steps {
