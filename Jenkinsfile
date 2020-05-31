@@ -4,12 +4,6 @@ pipeline {
     
     stages {
     	
-    	stage('Create cluster') {
-    		steps {
-    			load 'setup-cluster/Jenkinsfile'
-    		}
-    	}
-    	
         stage('Lint HTML') {
 	        steps {
                 sh 'tidy -q -e *.html'
