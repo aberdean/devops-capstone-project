@@ -8,10 +8,9 @@ pipeline {
     		when {
     			expression {
     				STACK_COMPLETE = withAWS(region:'us-west-2',credentials:'Capstone') {
-    					sh(returnStdout: true, script: 'aws cloudformation wait stack-create-complete --stack-name capstone')
+    					sh(returnStdout: false, script: 'aws cloudformation wait stack-create-complete --stack-name capstone')
     				}
     				return STACK_COMPLETE == 'Waiter StackCreateComplete failed: Waiter encountered a terminal failure state'
-    
     			}
     		}
     		steps {
@@ -23,7 +22,7 @@ pipeline {
     		when {
     			expression {
     				STACK_COMPLETE = withAWS(region:'us-west-2',credentials:'Capstone') {
-	    				sh(returnStdout: true, script: 'aws cloudformation wait stack-create-complete --region us-west-2 --stack-name capstone')
+	    				sh(returnStdout: false, script: 'aws cloudformation wait stack-create-complete --region us-west-2 --stack-name capstone')
 	    			}
     				return !(STACK_COMPLETE == 'Waiter StackCreateComplete failed: Waiter encountered a terminal failure state')
     			}
