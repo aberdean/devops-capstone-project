@@ -5,7 +5,9 @@ pipeline {
     stages {
     	
     	stage('Create cluster') {
-    		build job: 'setup-cluster/Jenkinsfile', propagate: true, wait: true
+    		steps {
+    			build job: 'setup-cluster/Jenkinsfile', propagate: true, wait: true
+    		}
     	}
     	
         stage('Lint HTML') {
