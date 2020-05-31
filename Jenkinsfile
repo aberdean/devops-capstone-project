@@ -5,30 +5,7 @@ pipeline {
     stages {
     	
     	stage('Create cluster') {
-    		when {
-    			expression {
-    				return !(withAWS(region:'us-west-2',credentials:'Capstone') {
-    					sh(returnStdout: false, script: 'aws cloudformation wait stack-create-complete --stack-name capstone')
-    				})
-    			}
-    		}
-    		steps {
-    			build job: 'setup-cluster/Jenkinsfile', propagate: true, wait: true
-    		}
-    	}
-    	
-    	stage('Skip cluster creation') {
-    		when {
-    			expression {
-    				STACK_COMPLETE = withAWS(region:'us-west-2',credentials:'Capstone') {
-	    				sh(returnStdout: false, script: 'aws cloudformation wait stack-create-complete --region us-west-2 --stack-name capstone')
-	    			}
-    				return !(STACK_COMPLETE == 'Waiter StackCreateComplete failed: Waiter encountered a terminal failure state')
-    			}
-    		}
-    		steps {
-    			echo 'Skipped cluster creation. Cluster already exists.'
-    		}
+    		build job: 'setup-cluster/Jenkinsfile', propagate: true, wait: true
     	}
     	
         stage('Lint HTML') {
