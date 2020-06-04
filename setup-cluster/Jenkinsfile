@@ -3,14 +3,14 @@ pipeline {
     stages {
     
 	    stage('Create Kubernetes cluster') {
-	       steps {
+	    	steps {
 	            withAWS(region:'us-west-2',credentials:'Capstone') {
 	                sh '''
 	                    eksctl create cluster \
                             --name capstone \
                             --version 1.16 \
                             --region us-west-2 \
-                            --nodegroup-name standard-workers \
+                            --nodegroup-name capstone-workers \
                             --node-type t2.micro \
                             --nodes 2 \
                             --nodes-min 2 \
@@ -21,13 +21,13 @@ pipeline {
 	    }
 	    
 	    stage('Create config file') {
-			steps {
-				withAWS(region:'us-west-2', credentials:'Capstone') {
-					sh '''
-						aws eks --region us-west-2 update-kubeconfig --name capstone
-					'''
-				}
-			}
-		}
-    }
+	    	steps {
+	    		withAWS(region:'us-west-2', credentials:'Capstone') {
+	    			sh '''
+	    				aws eks --region us-west-2 update-kubeconfig --name capstone
+	    			'''
+	    		}
+	    	}
+	    }
+	}
 }
