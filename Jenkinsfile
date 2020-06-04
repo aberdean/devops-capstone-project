@@ -18,7 +18,7 @@ pipeline {
 	    
 	    stage('Build Docker image') {
 	        steps {
-	            sh 'docker build -t aberdean/capstone:v2 .'
+	            sh 'docker build -t aberdean/capstone:v3 .'
 	        }
 	    }
 	    
@@ -26,7 +26,7 @@ pipeline {
 	        steps {
 	            withDockerRegistry([url: '', credentialsId: 'dockerhub']) {
 	                sh '''
-    	                docker push aberdean/capstone:v2
+    	                docker push aberdean/capstone:v3
     	            '''
 	            }
 	        }
@@ -45,7 +45,7 @@ pipeline {
 	    stage('Deploy app') {
 	    	steps {
 	    		withAWS(region:'us-west-2',credentials:'Capstone') {
-	    			sh 'kubectl apply -f https://raw.githubusercontent.com/aberdean/devops-capstone-project/master/deploment.yaml'
+	    			sh 'kubectl apply -f https://raw.githubusercontent.com/aberdean/devops-capstone-project/master/deployment.yaml'
 	    		}
 	    	}
 	    }
