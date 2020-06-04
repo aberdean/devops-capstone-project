@@ -50,6 +50,14 @@ pipeline {
 	    	}
 	    }
 	    
+	    stage('Add load balancer') {
+	    	steps {
+	    		withAWS(region:'us-west-2',credentials:'Capstone') {
+	    			sh 'kubectl apply -f https://raw.githubusercontent.com/aberdean/devops-capstone-project/master/service.yaml'
+	    		}
+	    	}
+	    }
+	    
 	    stage('Check deployment rollout') {
 	    	steps {
 	    		withAWS(region:'us-west-2',credentials:'Capstone') {
